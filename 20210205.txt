@@ -1,0 +1,21 @@
+Debugger tools
+--------------
+
+import pdb; pdb.set_trace()
+
+s - step over
+n - next
+ll - list entire code block
+b filename:linenumber - breakpoint
+
+PyCharm, VS Code has debugger tools
+Acitvate the environment that has all the installations
+Pick the break point and Debug the code
+
+PythonTutorial can also be helpful
+
+Machine Learning 
+----------------
+
+Supervised Learning
+Training set Test set

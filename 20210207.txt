@@ -1,0 +1,10 @@
+Perceptron Algorithm
+--------------------
+
+Update the margin boundary if the training set is misclassified
+This is a linear classifier
+
+Update 0(new) = 0(old) + y(i)x(i) and 0o(new) = 0o(old) + y(i)
+when y(i)(0x(i) + 0o) > 0 (misclassified condition)
+
+y(i)((0 + y(i)x(i))x(i) + 0o + y(i)) >= 0
