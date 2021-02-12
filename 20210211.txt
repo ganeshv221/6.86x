@@ -1,3 +1,31 @@
-test
-another line
-another line
+Support Vector machines
+-----------------------
+
+We decide to have a unit margin for classifying all the data points
+We pick 0 such that it is
+min of 0transpose*theta 
+all the data points lie outside unit margin boundary and are not misclassified
+i.e y(i).[0*x + 0o] >= 1
+
+Hinge loss
+---------
+Suppose we cannot classify all data points, we instead give a penalty on 0 
+loss(z) = max{0,1-z}
+where z is y(i) .[0*x(i)]
+
+There are several other loss functions for example, zero-one, log-loss,
+exponential loss.
+
+Objective function
+------------------
+
+min(0transpose*0*) + min(C*loss(h))
+ min 0.5*||0||^2 + gradient_0(C * max(0,1-y*0*x)) (for hinge loss)
+
+This is a parbola. The minimum of the parabola is the solution.
+
+lambda*||0|| + -yx = 0
+x = lambda*||0|| / y 
+||x||^2 = (lambda/y)^2
+ 
+lambda^2*(|01|^2 + |02|^2)/y^2
