@@ -22,7 +22,7 @@ def hinge_loss_full(feature_matrix, labels, theta, theta_0):
     hinge_loss_sum = 0.0
     for i in range(0,len(feature_matrix)):
         z[i] = labels[i]*(np.matmul(theta.transpose(),feature_matrix[i]) + theta_0)
-        if z[i] > 0:
+        if z[i] <= 0:
             hinge_loss_sum = hinge_loss_sum + 0
         else:
             hinge_loss_sum = hinge_loss_sum + 1 - z[i]

@@ -17,7 +17,7 @@ def hinge_loss_single(feature_vector, label, theta, theta_0):
     """
     # Your code here
     z = label*(np.matmul(theta.transpose(),feature_vector) + theta_0)
-    if z >0:
+    if z <= 0:
         hinge_loss = 0
     else:
         hinge_loss = 1 - z

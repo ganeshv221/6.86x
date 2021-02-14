@@ -1,7 +1,6 @@
 from string import punctuation, digits
 import numpy as np
 import random
-
 # Part I
 
 
@@ -37,6 +36,12 @@ def hinge_loss_single(feature_vector, label, theta, theta_0):
     given data point and parameters.
     """
     # Your code here
+    z = label*(np.matmul(theta.transpose(),feature_vector) + theta_0)
+    if z <= 0:
+        hinge_loss = 0
+    else:
+        hinge_loss = 1 - z
+    return hinge_loss
     raise NotImplementedError
 #pragma: coderesponse end
 
@@ -61,6 +66,15 @@ def hinge_loss_full(feature_matrix, labels, theta, theta_0):
     loss across all of the points in the feature matrix.
     """
     # Your code here
+    z = np.zeros(len(feature_matrix))
+    hinge_loss_sum = 0.0
+    for i in range(0,len(feature_matrix)):
+        z[i] = labels[i]*(np.matmul(theta.transpose(),feature_matrix[i]) + theta_0)
+        if z[i] <= 0:
+            hinge_loss_sum = hinge_loss_sum + 0
+        else:
+            hinge_loss_sum = hinge_loss_sum + 1 - z[i]
+    return hinge_loss_sum/len(feature_matrix)
     raise NotImplementedError
 #pragma: coderesponse end
 
@@ -89,6 +103,16 @@ def perceptron_single_step_update(
     completed.
     """
     # Your code here
+    z = label*(np.matmul(current_theta.transpose(),feature_vector) + current_theta_0)
+    if z > 0:
+        theta = current_theta 
+        theta_0 = current_theta_0 
+    else:
+        theta = current_theta + label*feature_vector
+        theta_0 = current_theta_0 + label
+
+    updated_classifier = (theta, theta_0)
+    return updated_classifier
     raise NotImplementedError
 #pragma: coderesponse end
 
@@ -120,10 +144,17 @@ def perceptron(feature_matrix, labels, T):
     the feature matrix.
     """
     # Your code here
+    current_theta = np.zeros(feature_matrix.shape[1])
+    current_theta_0 = 0
     for t in range(T):
         for i in get_order(feature_matrix.shape[0]):
             # Your code here
+            updated_classifier = perceptron_single_step_update(feature_matrix[i],labels[i],current_theta,current_theta_0)
+            current_theta = updated_classifier[0]
+            current_theta_0 = updated_classifier[1]
             pass
+    updated_classifier_full = (current_theta, current_theta_0)
+    return updated_classifier_full
     raise NotImplementedError
 #pragma: coderesponse end
 
@@ -159,6 +190,21 @@ def average_perceptron(feature_matrix, labels, T):
     find a sum and divide.
     """
     # Your code here
+    current_theta = np.zeros(feature_matrix.shape[1])
+    current_theta_0 = 0
+    sum_theta = np.zeros(feature_matrix.shape[1])
+    sum_theta_0 = 0
+    for t in range(T):
+        for i in get_order(feature_matrix.shape[0]):
+            # Your code here
+            updated_classifier = perceptron_single_step_update(feature_matrix[i],labels[i],current_theta,current_theta_0)
+            current_theta = updated_classifier[0]
+            current_theta_0 = updated_classifier[1]
+            sum_theta = sum_theta + current_theta
+            sum_theta_0 = sum_theta_0 + current_theta_0
+            pass
+    average_classifier_full = (sum_theta/(feature_matrix.shape[0]*T), sum_theta_0/(feature_matrix.shape[0]*T))
+    return average_classifier_full
     raise NotImplementedError
 #pragma: coderesponse end
 
@@ -191,6 +237,13 @@ def pegasos_single_step_update(
     completed.
     """
     # Your code here
+    z = label*(np.matmul(current_theta.transpose(),feature_vector) + current_theta_0)
+    if z <= 1:
+        current_theta = (1-eta*L)*current_theta + eta*label*feature_vector
+        current_theta_0 = current_theta_0 + eta*label
+    else:
+        current_theta = (1-eta*L)*current_theta
+    return (current_theta, current_theta_0)
     raise NotImplementedError
 #pragma: coderesponse end
 
@@ -226,6 +279,13 @@ def pegasos(feature_matrix, labels, T, L):
     parameter, found after T iterations through the feature matrix.
     """
     # Your code here
+    count = 1
+    updated_classifier = (np.zeros(feature_matrix.shape[1]), 0)
+    for t in range(T):
+        for i in get_order(feature_matrix.shape[0]):
+            updated_classifier = pegasos_single_step_update(feature_matrix[i], labels[i], L, 1/(count**(1/2)), updated_classifier[0], updated_classifier[1])
+            count += 1
+    return updated_classifier
     raise NotImplementedError
 #pragma: coderesponse end
 
@@ -251,6 +311,13 @@ def classify(feature_matrix, theta, theta_0):
     be considered a positive classification.
     """
     # Your code here
+    labels = np.zeros(feature_matrix.shape[0])
+    for k in range(0, feature_matrix.shape[0]):   
+        if np.matmul(theta.transpose(),feature_matrix[k]) + theta_0 > 0:
+            labels[k] = 1
+        else:
+            labels[k] = -1
+    return labels
     raise NotImplementedError
 #pragma: coderesponse end
 
@@ -289,6 +356,9 @@ def classifier_accuracy(
     accuracy of the trained classifier on the validation data.
     """
     # Your code here
+    trained_classifier = classifier(train_feature_matrix, train_labels, **kwargs)
+    return (accuracy(classify(train_feature_matrix, trained_classifier[0], trained_classifier[1]), train_labels),
+            accuracy(classify(val_feature_matrix, trained_classifier[0], trained_classifier[1]), val_labels))
     raise NotImplementedError
 #pragma: coderesponse end
 

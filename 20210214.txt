@@ -1,0 +1,6 @@
+Homework 1
+----------
+Pegasos Algorithm for single update
+Pegasos Algorithm for full update
+Comparing Perceptron, Average Perceptron and Pegasos performance with visual plots
+Classify the labels in training set and compute Accuracy
