@@ -1,0 +1,13 @@
+Kaggle competition
+------------------
+Installed Kaggle module in 6.86x environment
+Downloaded train, test, sample submission dataset
+Launched sample machine learning models
+
+Improve performance
+Exploratory data analysis
+Idea1: Build a 2 layer neural network?
+    categories as first inputs predict continuous variables
+    continuous variables as second inputs to predict targets
+
+How to convert raw data to feature matrix?
