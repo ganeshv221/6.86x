@@ -56,8 +56,11 @@ def compute_cost_function(X, Y, theta, lambda_factor, temp_parameter):
     """
     #YOUR CODE HERE
     multinom_prob = np.log(compute_probabilities(X,theta,temp_parameter))
-    c = np.sum(-multinom_prob[0:Y.shape[0]])/(X.shape[0]*X.shape[0]) + np.sum(np.square(theta))*lambda_factor/2
-    return c
+    loss = 0
+    for i in Y:
+      loss += np.sum(-multinom_prob[i])/(X.shape[0]*X.shape[0])
+    regularization = np.sum(np.square(theta))*lambda_factor/2
+    return loss + regularization
     raise NotImplementedError
 
 def run_gradient_descent_iteration(X, Y, theta, alpha, lambda_factor, temp_parameter):
@@ -78,6 +81,11 @@ def run_gradient_descent_iteration(X, Y, theta, alpha, lambda_factor, temp_param
         theta - (k, d) NumPy array that is the final value of parameters theta
     """
     #YOUR CODE HERE
+    multinom_prob = compute_probabilities(X,theta,temp_parameter)
+    M = sparse.coo_matrix(([1]*X.shape[0], (Y, range(X.shape[0]))), shape=(theta.shape[0],X.shape[0])).toarray()
+    grad = np.matmul(np.subtract(M,multinom_prob),X)
+    theta = theta - alpha*(-np.divide(grad,temp_parameter*X.shape[0]) + lambda_factor*theta)
+    return theta
     raise NotImplementedError
 
 def update_y(train_y, test_y):

@@ -32,6 +32,9 @@ def multi_class_svm(train_x, train_y, test_x):
     Returns:
         pred_test_y - (m,) NumPy array containing the labels (int) for each test data point
     """
+    mul_clf = LinearSVC(random_state=0,C=0.1,multi_class='ovr')
+    mul_clf.fit(train_x, train_y)
+    return mul_clf.predict(test_x)
     raise NotImplementedError
 
 
