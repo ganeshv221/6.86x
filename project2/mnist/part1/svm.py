@@ -1,7 +1,6 @@
 import numpy as np
 from sklearn.svm import LinearSVC
 
-
 ### Functions for you to fill in ###
 
 def one_vs_rest_svm(train_x, train_y, test_x):
