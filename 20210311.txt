@@ -1,0 +1,52 @@
+Lecture 10: Gating and LSTM
+---------------------------
+LSTM Calculations
+-----------------
+Reccurent Neural Networks - Markov Model
+----------------------------------------
+Markov Models
+-------------
+Case 1
+------
+<beg>ML course UNK<end>
+P(ML|<beg>)*P(course|ML)*P(UNK|course)*P(<end>|UNK)
+=0.7*0.5*0.1*0.2
+=0.007
+
+Case 2
+------
+<beg> course ML is UNK <end>
+P(course|<beg>)*P(ML|course)*P(is|ML)*P(UNK|is)*P(<end>|UNK)
+=0.1*0*0.2*0.6*0.2
+=0
+
+<beg><end>
+P(<end>|<beg>)
+=0
+
+course is ML <end>
+P(is|course)*P(ML|is)*P(<end>|ML)
+=0.7*0.1*0.1
+
+<beg> ML course<end>
+P(ML|<beg>)*P(course|ML)*P(<end>|course)
+=0.7*0.5*0.2
+
+Case 3
+------
+<beg> course ML is UNK <end>
+=0
+<beg><end>
+=0
+course is ML <end>
+=0.7*0.1*0.1 (but sentence does not start with <beg>)
+<beg> ML course <end>
+=0.7*0.5*0.2
+
+Case 4
+------
+ML courses are cool
+Humanities courses are cool
+But some courses are boring
+
+Probability that 'cool' occurs is 2/3

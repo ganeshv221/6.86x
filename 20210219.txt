@@ -131,3 +131,14 @@ Ridge regression
 -3barybarx - (3barx^2 - 2lambda)0
 0 = -3barybarx/(3barx^2 - 2lambda)
 (revisit)
+
+Ridge regression Minimalization
+-------------------------------
+Closed form expression for optimal 0hat
+---------------------------------------
+sum_t(2.(y^t - 0.x^t - 0o).(-x^t) + 2.lambda.0)
+sum_t(-x^t*y^t + 0*x^t*x^t + 0o*x^t + lambda*0)
+sum_t(-x^t*y^t + 0(x^t*x^t + lambda) + 0o*x^t)
+sum_t(-x^t*y^t + 0(x^t*x^t + lambda) + xbar*y^t - 0xbar*x^t)
+sum_t(-x^t*y^t + 0(x^t*x^t + lambda - xbar*x^t) + xbar*y^t)
+0 = (sum_t(x^t*y^t) - xbar*sum_t(y^t))/(sum_t(x^t*x^t) + lambda - xbar*sum_t(x^t))

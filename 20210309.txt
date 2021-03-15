@@ -1,0 +1,170 @@
+Unit 3
+------
+Neural Networks
+---------------
+NAND Gate
+z = w1x1 + w2x2 + w0
+
+Case 1
+------
+w1=w2=w0=0
+z = x1 + x2
+x1 = 0 1 1 0
+x2 = 0 1 0 1
+U  = 0 1 1 1
+
+Case 2
+------
+x1 = 0 1 1 0
+x2 = 0 1 0 1
+U  = 1 0 1 1
+
+z = w0
+z = w1 + w2 + w0
+z = w2 + w0
+z = w1 + w0
+
+w0 = 1
+z = 1
+z = w1 + w2 + 1
+z = w2 + 1
+z = w1 + 1
+
+-1,-1
+-2,1
+2,-1
+1,-1
+0,-1
+0,1
+0,-2
+0,2
+-2,2
+
+w0 = 2
+z = 2
+z = w1 + w2 + 2
+z = w2 + 2
+z = w1 + 2
+
+-1,-1
+
+AND gate using NAND
+-------------------
+x1 = 1 0 0 1
+x2 = 1 0 1 0
+U  = 0 1 1 1
+U2 = 0 1 1 1
+U3 = 1 0 0 0
+
+NOT gate using NAND
+-------------------
+x1 = 1 0
+x1 = 1 0
+U  = 0 1
+
+OR gate using NAND
+------------------
+x1 = 1 0 1 0
+x1 = 1 0 1 0
+x2 = 1 0 0 1
+x2 = 1 0 0 1
+U  = 0 1 0 1
+U2 = 0 1 1 0
+U3 = 1 0 1 1
+
+Linear Seperability
+-------------------
+
+f1 = 2z - 3 = 2(w01 - (w11x1 + w21x2)) - 3
+f2 = 2z - 3 = 2(w02 - (w12x1 + w22x2)) - 3
+
+Case 1
+------
+w11 = w21 = w12 = w22 = w01 = w02 = 0
+f1 = -3
+f2 = -3
+
+D' not linearly seperable
+
+Case 2
+------
+w11 = w21 = 2
+w12 = w22 = -2
+w01 = w02 = 1
+
+f1 = 2(1 - (2x1 + 2x2)) - 3 
+f2 = 2(1 - (-2x1 + -2x2)) - 3
+(7,-9),(-1,-1),(-1,-1),(-9,7)
+
+D' not linearly seperable
+
+Case 3
+------
+w11 = w21 = -2
+w12 = w22 = 2
+w01 = w02 = 1
+
+f1 = 2(1 - (-2x1 + -2x2)) - 3
+f2 = 2(1 - (2x1 + 2x2)) - 3
+(-9,7),(-1,-1),(-1,-1),(7,-9)
+
+D' not linearly seperable
+
+None of the above
+
+Non-linear activation function
+------------------------------
+w11 = w01 = 1, w21 = -1
+w22 = w02 = 1, w12 = -1
+
+Case 1
+------
+f1 = 5z - 2 = 5(w01 - (w11x1 + w21x2)) - 2 = 5(1-(x1 + -x2)) - 2
+f2 = 5z - 2 = 5(w02 - (w12x1 + w22x2)) - 2 = 5(1-(-x1 + x2)) - 2
+(3,3),(-7,13),(13,-7),(3,3)
+
+D' not linearly seperable
+
+Case 2
+------
+f1 = ReLU(z) = max(0,z) = max(0,1-(x1 + -x2))
+f2 = ReLU(z) = max(0,z) = max(0,1-(-x1 + x2))
+(1,1),(0,3),(3,0),(1,1)
+
+D' linearly seperable
+
+Case 3
+------
+f1 = tanh(z) = tanh(1-(x1 + -x2))
+f2 = tanh(z) = tanh(1-(-x1 + x2))
+(0.76,0.76),(-0.76,0.99),(0.99,-0.76),(0.76,0.76)
+
+D' linearly seperable
+
+Case 4
+------
+f1 = z = (1-(x1 + -x2))
+f2 = z = (1-(-x1 + x2))
+(1,1),(-1,3),(3,-1),(1,1)
+
+D' linearly not seperable
+
+Recursive Expression
+--------------------
+deltai = dL/dz
+f = tanh(x)
+f' = (1-tanh(x)^2)
+
+delta1 = 2(y-f)f1' = 2(y-f)(1-f1^2)
+delta2 = 2(y-f)f2' = 2(y-f)(1-f2^2)
+
+f2 = tanh(x)*f1*w2
+df2/df1 = (1-f2^2)w2
+
+dL/dw1 = df1/dw1 * dL/df1
+dL/df1 = df2/df1 * dL/df2
+
+dL/df1 = (1-f2^2)*w2 * dL/df2
+dL/dw1 = (1-f2^2)*w2 * dL/df2 * df1/dw1
+dL/dw1 = (1-f2^2)*w2 * dL/df2 * (1-f1^2)*x
+dL/dw1 = (1-f2^2)*w2 * 2(y-f2) * (1-f1^2)*x
