@@ -1,0 +1,65 @@
+Reinforcement Learning
+----------------------
+
+RL Course by David Silver - Lecture 2: Markov Decision Process
+RL Course by David Silver - Lecture 3: Planning by Dynamic Programming
+RL Course by David Silver - Lecture 4: Model-Free Prediction
+RL Course by David Silver - Lecture 5: Model Free Control
+RL Course by David Silver - Lecture 6: Value Function Approximation
+
+Q Learning
+----------
+
+Q(s,a) Value
+Q(s1,a1) Q(s1,a2)
+Q(s2,a2) Q(s2,a2)
+
+action value for state s1 and action a1, action value for state s1 and action a2
+action value for state s2 and action a1, action value for state s2 and action a2
+
+Reward1 + max(a) Q(s1,a1) Q(s1,a2)
+
+1x1 + 1x1
+
+Sample 1
+--------
+Q1(s1,a1) = alpha*S1 + (1-alpha)*Q0(s1,a1)
+S1 = alpha*(R(s1,a1) + max(a) Q0(s1,a1) Q0(s1,a2))
+
+Q1(s1,a1) = alpha*(R(s1,a1,s1) + max(a) Q0(s1,a1) Q0(s1,a2)) + (1-alpha)*Q0(s1,a1)
+Q1(s1,a1) = alpha*(R(s1,a1,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s1,a1)
+
+Q1(s1,a2) = alpha*(R(s1,a2,s1) + max(a) Q0(s1,a1) Q0(s1,a2)) + (1-alpha)*Q0(s1,a2)
+Q1(s1,a2) = alpha*(R(s1,a2,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s1,a2)
+
+Q1(s2,a1) = alpha*(R(s2,a1,s1) + max(a) Q0(s1,a1) Q0(s1,a2)) + (1-alpha)*Q0(s2,a1)
+Q1(s2,a1) = alpha*(R(s2,a1,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s2,a1)
+
+Q1(s2,a2) = alpha*(R(s2,a2,s1) + max(a) Q0(s1,a1) Q0(s1,a2)) + (1-alpha)*Q0(s2,a2)
+Q1(s2,a2) = alpha*(R(s2,a2,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s2,a2)
+
+Q(1,a1) Q(1,a2)
+Q(2,a1) Q(2,a2)
+
+Q = alpha*(R(s1,a1,s1) + max(a) Q0(s1,a1) Q0(s1,a2)) + (1-alpha)*Q0(s1,a1), 
+    alpha*(R(s1,a2,s1) + max(a) Q0(s1,a1) Q0(s1,a2)) + (1-alpha)*Q0(s1,a2)
+
+    alpha*(R(s2,a1,s1) + max(a) Q0(s1,a1) Q0(s1,a2)) + (1-alpha)*Q0(s2,a1), 
+    alpha*(R(s2,a2,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s2,a2)
+
+next state in max Q is s1
+
+Q = alpha*(R(s1,a1,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s1,a1),
+    alpha*(R(s1,a2,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s1,a2)
+
+    alpha*(R(s2,a1,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s2,a1),
+    alpha*(R(s2,a2,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s2,a2)
+next state in max Q is s2
+
+Q1 = alpha*(Reward + max(a) Q0 + (1-alpha)*Q0
+
+Sample 2
+--------
+Q1(s1,a1) = alpha*S1 + (1-alpha)*Q0(s1,a1)
+S1 = alpha*(R(s1,a1,s2) + max(a) Q0(s2,a1) Q0(s2,a2))
+Q1(s1,a1) = alpha*(R(s1,a1,s2) + max(a) Q0(s2,a1) Q0(s2,a2)) + (1-alpha)*Q0(s1,a1)

@@ -1,6 +1,0 @@
-Kaggle Competition
-------------------
-Working with data frames
-Cleaning and tidying using Pandas
-Encoding Categorical variable
-Introduction to SciKit modules, Linear regression

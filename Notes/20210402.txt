@@ -1,0 +1,17 @@
+Clustering
+----------
+Mixture Models
+--------------
+Lecture 16
+----------
+import numpy as np
+def norm_dist(x,mu,ss):
+  return np.multiply(1/np.sqrt(2*np.pi*ss)*ss,np.exp(-1/(2*ss)*np.abs(np.square(np.subtract(x,mu)))))
+
+x = np.array([[0.2],[-0.9],[-1],[1.2],[1.8]])
+p_ji = 0.5*np.divide(norm_dist(x,-3,4),np.add(0.5*norm_dist(x,-3,4),0.5*norm_dist(x,2,4)))
+
+mu_c1 = np.divide(np.matmul(p_ji.transpose(),x),np.sum(p_ji))
+p_ji_c1 = (1/p_ji.shape[0])*np.sum(p_ji)
+ss_c1 = np.divide(np.matmul(p_ji.transpose(),np.square(np.abs(np.subtract(x,mu_c1)))),np.sum(p_ji))
+print(ss_c1)

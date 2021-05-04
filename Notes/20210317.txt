@@ -1,0 +1,8 @@
+Project 3
+---------
+Creating neural network framework
+Test set
+--------
+Forward propagation using weighted inputs and activation
+Backward propagation error using derivatives
+Trick: compute errors at each layer and proceed calculating other parameters

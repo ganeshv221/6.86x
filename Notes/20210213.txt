@@ -1,0 +1,6 @@
+Homework 1
+----------
+Hinge loss implementation on python for single data point in python
+Hinge loss implementation on python for full data set in python
+Perceptron algorithm for single point in python
+Perceptron algorithm for full data set in python

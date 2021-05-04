@@ -1,0 +1,15 @@
+MIT 6.86x
+---------
+Unit 18: Reinforcement Learning
+-------------------------------
+
+Numerical example
+
+Project 5: Tab 2
+----------------
+Optimal Episodic Reward
+-----------------------
+Case 1
+V = -0.01 + 0.5*(-0.01+1) = 0.485
+Case 2
+V = -0.01 + 0.5*(-0.01) + 0.5*0.5*(-0.01+1) = 

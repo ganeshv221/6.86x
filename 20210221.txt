@@ -1,5 +1,0 @@
-Project 2
----------
-Multinomial (softmax) regression and Gradient Descent
-    Computed Multinomial probabilities
-    Computing Cost function associated with Multinomial regression

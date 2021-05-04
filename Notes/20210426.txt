@@ -1,0 +1,9 @@
+Reinforcement Learning
+----------------------
+Project 5
+---------
+Q-learning with linearity
+Q-learning with deep neural networks
+
+
+Started building modern python applications on aws course

@@ -1,0 +1,20 @@
+Reinforcement Learning
+----------------------
+Q value iteration by sampling
+-----------------------------
+Q value iteration
+Q*(k+1) = sum(s') T(s,a,s')*(R(s,a,s') + gamma*max(a)(Q*(K)(s',a')))
+
+Q*(i+1) (s,a) = alpha*Sk + (1-alpha)*Q(i) (s,a)
+where,
+k = i+1
+Sk - kth sample of Q(s,a)
+
+Numerical Example
+-----------------
+gamma = 0.5
+alpha = 0.75
+Q0(s,a) = 0
+
+S1 - first sample of Q(s,a)
+Q(s1,a_s1)

@@ -1,0 +1,9 @@
+Homework1
+---------
+Parameter Tuning T and lambda
+Computing accuracy on test set
+Feature Engineering 
+    Remove stopwords, change binary features to count features
+    Length of text, capital letters, word embeddings
+    Threshhold the number of times the word should appear before adding them to the dictionary.
+Recitation, Cross Validation 

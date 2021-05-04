@@ -1,0 +1,8 @@
+Working on Homework and lecture exercises
+dC/dw1 = dz/dw1 * dC/dz 
+= dz/dw1 * delta1
+= x*(1-f1^2)*w2*delta2
+= x*(1-ReLU(w1*x)^2)*w2*deltaL
+= 3*(1-ReLU(0.03)^2)*(-5)*(gradC * f2')
+= 3*(0.99)*(-5)*(f2 - 1)*f2'
+=

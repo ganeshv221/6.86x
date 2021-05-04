@@ -1,0 +1,33 @@
+Building Modern Python Applications on AWS
+------------------------------------------
+
+Quiz 4 
+------
+Map - an be used to execute a set of steps for each element of an input array in parallel
+
+A state machine in AWS Step Function makes use of the AWS Batch service to run a batch job on many EC2 instances. The state machine doesn’t need to see the output of the batch job, but only that it started. 
+
+Which of the following service integration pattern should be used?
+not Run a job
+
+For orchestrating a few Lambda functions that run for a very short duration at volumes as high as 5,000 concurrent execution, which type of workflow should be used?
+not standard workflow
+
+Quiz 5
+------
+In order to turn on distributed tracing with AWS Lambda and capture a segment for the lambda function execution, you must include the AWS SDK for X-Ray in your deployment package.
+False
+
+When using the AWS X-Ray SDK in code that will be run on top of AWS Lambda, you must also create and manage the X-Ray Daemon on your own by including it as a dependency in your deployment package.
+False
+
+What is the proper flow for sending logs to Amazon CloudWatch Logs?
+Create a Log Group, then create a Log Stream and send Log Events from the application to the Log Stream.
+
+What is the easiest way to send logs to Amazon CloudWatch Logs from code in a Lambda function?
+Not
+Use the Amazon CloudWatch SDK to send logs
+
+What do you need to define on a Lambda function to send logs to CloudWatch Logs?
+Not
+An IAM Role

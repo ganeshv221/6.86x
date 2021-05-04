@@ -1,0 +1,10 @@
+Project 2
+---------
+Multinomial regression
+    Computed the cost function
+Gradient descent - Multinomial regression
+    Compute a sparse matrix of 1s and 0s of size nxd (here 60,000 x d dimensions)
+    Compute probability of mth classifier, dimensions (kxd, where k is number of buckets/bags) 
+    Compute the product of x(i), sparse matrix and probability. Sum them through all 60,000 datapoints
+    Add result to lambda*theta. This is the mth theta vector, dimensions (kxd)
+    Subract with old theta to get updated theta

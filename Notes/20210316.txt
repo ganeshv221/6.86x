@@ -1,0 +1,15 @@
+Convolution Network Network : 2D
+--------------------------------
+I = [1 0 2]
+    [3 1 0]
+    [0 0 4]
+F = [1 0]
+    [0 1]
+Conv(I) = [2 0]
+          [3 5]
+ReLU(Conv(I)) = [2 0]
+                [3 5]
+MaxPool(ReLU(Conv(I))) = 5
+Project 3
+---------
+Creating neural network framework

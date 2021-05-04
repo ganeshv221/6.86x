@@ -1,0 +1,27 @@
+Building Modern Python Applications on AWS
+------------------------------------------
+Lab 6
+-----
+Done
+
+Final Assessment
+----------------
+In which scenario would Cognito User Pool be the right choice to use over a Cognito Identity Pool?
+Not 
+My application requires unauthenticated users to access parts of my application.
+
+When the application code in a Lambda function needs to communicate with a relational database, which feature of the AWS Lambda service would minimize the amount of connections to that relational database?
+Provisioned Concurrency
+
+What feature can be used to know if a Lambda function, that was asynchronously invoked, executed successfully? 
+Looking at the response code
+
+In which of the following use case a Lambda layer should NOT be used?
+I would like to share my custom runtime with others.
+
+Which of the following statement is true when using AWS Lambda layers?
+Layers are shared automatically with every AWS customer.
+
+What is the easiest way to send logs to Amazon CloudWatch Logs from code in a Lambda function?
+Make an HTTPS call to Amazon CloudWatch logs
+

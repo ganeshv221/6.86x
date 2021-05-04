@@ -1,0 +1,125 @@
+Mid-term exam
+-------------
+Linear classification
+---------------------
+y(i)(0*x(i) + 0o) >0
+00 = 0
+0 = 0
+
+Update 
+0 = 0old + y(i)x(i)
+0o = 0oold + y(i)
+
+Update 1
+0 = 0 + -1*[0,0] = [0,0] 
+0o = 0 + -1 = -1
+
+Update 2
+0 = [0,0] + -1*[2,0] = [-2,0]
+0o = -1 + -1 = -2
+
+0 = [-2,0] + -1*[2,0] = [-4]
+0o = -2 + -1 = -3
+
+0 = [0,0] + 9*-1[2,0] = [-18,0]
+0o = -1 + 9*-1 = -10
+
+Update 3
+0 = [-18,0] + 10*-1*[3,0] = [-48,0]
+0o = -10 + 10*-1 = -20
+
+Update 4
+0 = [-48,0] + 5*-1*[0,2] = [-48,-10]
+0o = -20 + 5*-1 = -25
+
+Update 5
+0 = [-48,-10] + 9*-1*[2,2] = [-66,-28]
+0o = -25 + 9*-1 = -34
+
+Update 6
+0 = [-66,-28] + 11*1*[5,1] = [-11,-17]
+0o = -34 + 11*1 = -23
+
+Update 7
+0 = [-11,39] + 0*1*[5,2] = [-11,17]
+0o = -23 + 0*1 = -23
+
+Update 8
+0 = [-11,39] + 3*1*[2,4] = [-5,-5]
+0o = -23 + 3*1 = -20
+
+Update 9
+0 = [-5,51] + 1*1*[4,4] = [-1,-1]
+0o = -20 + 1*1 = -19
+
+Update 10
+0 = [-1,55] + 1*1*[4,4]
+0o = -19 + 1 = -18
+
+
+Kernelized Perceptron
+---------------------
+y(i)*sum(alpha(j)*y(j)*K[x(i),x(j)]) <= 0
+
+Initialize
+alpha(j) = 0
+
+Update
+alpha(j) = alpha(j) + 1
+
+Code for computing kernel matrix
+import numpy as np
+feature_matrix = np.array([[0,0],[2,0],[3,0],[0,2],[2,2],[5,1],[5,2],[2,4],[4,4],[5,5]])
+labels = np.array([-1,-1,-1,-1,-1,1,1,1,1,1])
+phi = np.ones((feature_matrix.shape[0],feature_matrix.shape[1]+1))
+phi[:,0] = feature_matrix[:,0]*feature_matrix[:,0]
+phi[:,1] = feature_matrix[:,0]*feature_matrix[:,1]*np.sqrt(2)
+phi[:,2] = feature_matrix[:,1]*feature_matrix[:,1]
+kernel_matrix = np.matmul(phi,phi.transpose())
+kernel_matrix
+alpha = np.zeros(feature_matrix.shape[0])
+np.multiply(labels,kernel_matrix)
+
+print(__doc__)
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import svm
+from sklearn.datasets import make_blobs
+
+Margin Seperator Code (from Sci-kit learn)
+------------------------------------------
+#X = np.array([[0,0],[2,0],[3,0],[0,2],[2,2],[5,1],[5,2],[2,4],[4,4],[5,5],[3,5]])
+#X = np.array([[0,0],[2,0],[1,1],[0,2],[3,3],[4,1],[5,2],[1,4],[4,4],[5,5]])
+X = np.array([[0,0],[2,0],[3,0],[0,2],[2,2],[5,1],[5,2],[2,4],[4,4],[5,5]])
+#y = np.array([[-1],[-1],[-1],[-1],[-1],[1],[1],[1],[1],[1],[1]])
+y = np.array([[-1],[-1],[-1],[-1],[-1],[1],[1],[1],[1],[1]])
+
+# fit the model, don't regularize for illustration purposes
+clf = svm.LinearSVC(C=1,loss='hinge')
+clf.fit(X, y)
+
+param_grid = {'C': 10. ** np.arange(-6, 4)}
+grid_search = GridSearchCV(clf, param_grid=param_grid, cv=5, verbose=3, return_train_score=True)
+
+plt.scatter(X[:, 0], X[:, 1], c=y, s=30, cmap=plt.cm.Paired)
+
+# plot the decision function
+ax = plt.gca()
+xlim = ax.get_xlim()
+ylim = ax.get_ylim()
+
+# create grid to evaluate model
+xx = np.linspace(xlim[0], xlim[1], 30)
+yy = np.linspace(ylim[0], ylim[1], 30)
+YY, XX = np.meshgrid(yy, xx)
+xy = np.vstack([XX.ravel(), YY.ravel()]).T
+Z = clf.decision_function(xy).reshape(XX.shape)
+
+# plot decision boundary and margins
+ax.contour(XX, YY, Z, colors='k', levels=[-1, 0, 1], alpha=0.5,
+           linestyles=['--', '-', '--'])
+# plot support vectors
+#ax.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1], s=100,
+#           linewidth=1, facecolors='none', edgecolors='k')
+plt.show()

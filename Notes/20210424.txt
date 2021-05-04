@@ -1,0 +1,9 @@
+Reinforcement Learning
+----------------------
+Project 5
+---------
+Optimal episodic reward 
+
+V*h0 = R(h0) + gamma*R(h1) 
+= -0.01 + 0.5*(-0.01) + 1
+= 

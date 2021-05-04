@@ -1,0 +1,61 @@
+Support Vector machines
+-----------------------
+
+Homework 1 Unit 4
+-----------------
+Objective function
+min lambda*||0||^2/2 + loss(max(0,1-y*x*0))
+
+= lambda*||0|| + -y*x 
+||0|| = y*x/lambda
+
+y*0*x <= 1
+y*(y*x/lambda)*x <= 1
+y^2||x||^2/lambda <= 1
+||x||^2 <= lambda
+
+Gradient descent method
+-----------------------
+For hingle loss
+---------------
+min 0.5*||0(k+1) - 0(k)||^2*lambda + loss(max(0,1-y*0(k+1)*x)) 
+0(k+1) = 0(k) - eta*gradient(loss(max(0,1-y*0*x)))
+0(k+1) = 0(k) - eta*(-y*x)
+
+Zero-one loss
+-------------
+There are support vector machines with hard constraints
+min ||0|| and y(0*x) >= 0
+
+Homework 1 Unit 6
+-----------------
+
+Perceptron updates
+------------------
+0(k+1) = 0(k) + y(i)*x[i]
+x1 = [cos(pi), 0]   y1 = 1
+x2 = [0, cos(2pi)]  y2 = 1
+
+Case 1
+------
+0(1) = y(1)*x[1]
+0(1) = [-1,0]
+
+y(i)(0[1]x[1]) > 0 condition
+y(1)[1,0]x[1] = 1.[-1,0][-1,0] = 1    classify
+y(2)[1,0]x[2] = 1.[-1,0][0,1] = -1    misclassify
+
+Case 2
+------
+0(2) = 0(1) + y(2)x[2] = [-1,0] + 1.[0,1] = [-1,1]
+
+y(i)(0[1]x[1]) > 0 condition
+y(1)[1,1]x[1] = 1.[-1,1][-1,0] = 1  classify
+y(2)[1,1]x[2] = 1.[-1,1][0,1] = 1   classify
+
+Sketching Convergence
+---------------------
+
+x1 = [-1,0,0]   y1 = 1
+x2 = [0,1,0]    y2 = 1
+x3 = [0,0,-1]   y3 = 1

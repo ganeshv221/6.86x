@@ -1,0 +1,16 @@
+Reinforcement Learning
+----------------------
+Markov decision Process
+-----------------------
+T(s,a,s') - Transition from state s to next state s' through action a
+P(s,a,s') - Transition Probabilities from state s to next state s' through action a
+R - Reward function
+gamma - discount factor
+R(s0) + gamma*R(s1) + gamma^2*R(s2) + ... - Total payoff 
+pi:s->a - mapping from states to actions
+
+V_pi = E[Total payoff|pi, s=s0] - Value function for policy pi is the function mapping from states to rewards
+V_pi(s) = E[R(s) + gamma*(sum(P(s,pi(s)*V_pi(s'))))] - Value function for current state is expected function of 
+    sum of immediate reward and discounted future rewards
+V_pi*(s) = E[R(s) + max(a) gamma*(sum(P(s')_(s,pi(s)*V_pi(s'))))] - Optimal Value function
+pi*(s) = argmax(a) sum(P(s')_(s,pi(s)*V_pi(s'))) - Optimal policy function

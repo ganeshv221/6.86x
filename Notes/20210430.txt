@@ -1,0 +1,12 @@
+Building Modern Python Applications on AWS
+------------------------------------------
+
+Lab 3 
+-----
+Invoke URL
+https://j0emkakuaa.execute-api.us-west-2.amazonaws.com/test
+
+Quiz
+----
+Custom runtime for PHP code running in Lambda
+Resource based policies to access AWS Lambda functions

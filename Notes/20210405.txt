@@ -1,0 +1,42 @@
+Clustering
+----------
+Homework 4
+----------
+1. K-means and K-medoids
+------------------------
+
+K-medians
+x = np.array([[0,-6],[4,4],[0,0],[-5,2]])
+z = np.array([[-5,2],[0,-6]])
+c1 = np.array([[0,0],[0,0]])
+c2 = np.array([[0,0],[0,0]])
+sum = np.array([0])
+
+cost1 = np.sum(np.abs(np.subtract(x,z[0])),axis=1)
+cost2 = np.sum(np.abs(np.subtract(x,z[1])),axis=1)
+
+for i in range(4):
+  if cost1[i] <= cost2[i]:
+    c1 = np.append(c1,[x[i]],axis=0)
+    sum = sum + cost1[i]
+  else:
+    c2 = np.append(c2,[x[i]],axis=0)
+    sum = sum + cost2[i]
+
+c1 = np.delete(c1,[0,1],0)
+c2 = np.delete(c2,[0,1],0)
+z[0] = np.median(c1,axis=0)
+z[1] = np.median(c2,axis=0)
+
+print(c1)
+print(c2)
+print(z)
+print(sum)
+
+2. Maximum Likelihood Estimate
+------------------------------
+Unigram Model
+-------------
+count(A) = 6
+count(B) = 5
+count(C) = 3

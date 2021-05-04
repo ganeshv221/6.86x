@@ -1,0 +1,48 @@
+Classification for MNIST using deep neural networks
+---------------------------------------------------
+Use the following command to install pytorch pn VSCode
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+
+Pytorch
+-------
+Fully Connected Neural Networks
+-------------------------------
+Base line accuracy =            0.932487 (test = 0.9204727564102564)
+Batch size 64 accuracy =        0.939852 (test = 0.9298878205128205)
+Learning rate 0.01 accuracy =   0.934659 (test = 0.9206730769230769)
+Momentum 0.09 accuracy =        0.936664 (test = 0.9247796474358975)
+LeakyReLU activation accuracy = 0.931985 (test = 0.9207732371794872)
+
+Improving Accuracy - Hidden 128
+-------------------------------
+Base line accuracy =            0.977440 (test = 0.9776642628205128)
+Batch size 64 accuracy =        0.976142 (test = 0.9747596153846154)
+Learning rate 0.01 accuracy =   0.955047 (test = 0.9427083333333334)
+Momentum 0.09 accuracy =        0.967079 (test = 0.9625400641025641)
+LeakyReLU activation accuracy = 0.978610 (test = 0.9769631410256411)
+
+Convolutional Neural Networks
+-----------------------------
+Model map
+nn.Conv2d(1, 32, (3, 3))
+Input Channel = 1, Output Channel = 32, Kernel size = 3
+nn.ReLU(),
+nn.MaxPool2d((2, 2)),
+nn.Conv2d(32, 64, (3, 3)),
+Input Channel = 32, Output Channel = 64, Kernel size = 3
+nn.ReLU(),
+nn.MaxPool2d((2, 2)),
+Flatten(),
+nn.Linear(1600,128),
+nn.Dropout(p=0.5),
+nn.Linear(128,10)
+
+Parameters
+----------
+1x28x28
+32x(28-3+1)x(28-3+1)
+32x26x26
+32x13x13
+64x(13-3+1)x(13-3+1)
+64x11x11
+64x5x5 = 1600 (Flatten)
